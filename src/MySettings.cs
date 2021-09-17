@@ -25,6 +25,9 @@ namespace What3Passwords
         [CommandOption("--double-up")]
         public bool DoubleUp { get; set; }
 
+        [CommandOption("--include-numbers")]
+        public bool IncludeNumbers { get; set; }
+
         [CommandOption("--check-quality")]
         public bool CheckQuality { get; set; }
 

@@ -81,7 +81,29 @@ namespace What3Passwords
                 words = words.Select(x => $"{x.Substring(0, 1).ToUpper()}{x.Substring(1)}").ToArray();
             }
 
-            return $"{settings.PreText}{string.Join(settings.Separator, words)}{settings.PostText}";
+            var wordText = string.Join(settings.Separator, words);
+
+            var preText = string.Empty;
+            if (!string.IsNullOrWhiteSpace(settings.PreText))
+            {
+                preText = $"{settings.PreText}{settings.Separator}";
+            }
+
+            var postText = string.Empty;
+            if (!string.IsNullOrWhiteSpace(settings.PostText))
+            {
+                postText = $"{settings.Separator}{settings.PostText}";
+            }
+
+            var preNumber = string.Empty;
+            var postNumber = string.Empty;
+            if (settings.IncludeNumbers)
+            {
+                preNumber = $"{random.Next(100, 999)}{settings.Separator}";
+                postNumber = $"{settings.Separator}{random.Next(100, 999)}";
+            }
+
+            return $"{preText}{preNumber}{wordText}{postNumber}{postText}";
         }
 
         private static Result GetPasswordEvaluation(string password)
