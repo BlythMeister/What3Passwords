@@ -28,8 +28,9 @@ OPTIONS:
         --pre <TEXT>
         --post <TEXT>
         --separator <TEXT>
-        --double-up
         --upper-case
+        --double-up
+        --include-numbers
         --check-quality
         --check-pwnd
 ```
