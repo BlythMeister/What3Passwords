@@ -1,0 +1,57 @@
+Working directory 'E:\Data\DeployedSystemTester-UAT\Tests\Extracted\4cfcdcd6-b1e1-4d47-9c9a-d0447f3c504b_20210924_091418' is the executing directory
+Running tests from 15below.Core.DeploySmoke.Tests, Version=6.42.4.40742, Culture=neutral, PublicKeyToken=null
+NUnitLite 3.13.2 (.NET Framework 4.5)
+Copyright (c) 2021 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: Microsoft Windows NT 10.0.14393
+  CLR Version: 4.0.30319.42000
+
+Test Files
+    E:/Data/DeployedSystemTester-UAT/Tests/Extracted/4cfcdcd6-b1e1-4d47-9c9a-d0447f3c504b_20210924_091418/15below.Core.DeploySmoke.Tests.exe
+
+Test Discovery
+  Start time: 2021-09-24 09:14:20Z
+    End time: 2021-09-24 09:14:20Z
+    Duration: 0.078 seconds
+
+2021-09-24 09:14:20,778 [ParallelWorker#1] DEBUG - Creating ConnectionHelper with ID: dfbb7ac1-2f90-42eb-925a-ddad3159b44e
+2021-09-24 09:14:20,778 [ParallelWorker#2] DEBUG - Creating ConnectionHelper with ID: f58dcdbb-d3aa-435d-9bba-6d704db4d72d
+2021-09-24 09:14:35,559 [ParallelWorker#1] DEBUG - Disposing ConnectionHelper with ID: dfbb7ac1-2f90-42eb-925a-ddad3159b44e
+2021-09-24 09:14:35,559 [ParallelWorker#1] DEBUG - Deleting queues with 'dfbb7ac1-2f90-42eb-925a-ddad3159b44e' in name
+2021-09-24 09:14:35,559 [ParallelWorker#3] DEBUG - Creating ConnectionHelper with ID: 5717c688-99bc-465b-867a-39b76f9ef1a8
+2021-09-24 09:14:35,575 [ParallelWorker#1] DEBUG - Get all queues
+2021-09-24 09:14:35,575 [ParallelWorker#4] DEBUG - Disposing ConnectionHelper with ID: f58dcdbb-d3aa-435d-9bba-6d704db4d72d
+2021-09-24 09:14:35,575 [ParallelWorker#4] DEBUG - Deleting queues with 'f58dcdbb-d3aa-435d-9bba-6d704db4d72d' in name
+2021-09-24 09:14:35,575 [ParallelWorker#4] DEBUG - Get all queues
+2021-09-24 09:14:35,794 [ParallelWorker#4] DEBUG - Creating ConnectionHelper with ID: cf4709c1-5ffe-4bfd-88ad-f2d921a3ade3
+2021-09-24 09:14:43,841 [2] DEBUG - Disposing ConnectionHelper with ID: f58dcdbb-d3aa-435d-9bba-6d704db4d72d
+2021-09-24 09:14:43,841 [2] DEBUG - Deleting queues with 'f58dcdbb-d3aa-435d-9bba-6d704db4d72d' in name
+2021-09-24 09:14:43,841 [2] DEBUG - Get all queues
+STD_ERR: 
+STD_ERR: Unhandled Exception: System.AggregateException: One or more errors occurred. ---> System.Net.Http.HttpRequestException: Response status code does not indicate success: 401 (Unauthorized).
+STD_ERR:    at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+STD_ERR:    at System.Net.Http.HttpClient.<GetStringAsyncCore>d__27.MoveNext()
+STD_ERR: --- End of stack trace from previous location where exception was thrown ---
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.Internal.Helpers.RabbitCleaner.<CallRabbitApiGet>d__7`1.MoveNext() in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\Internal\Helpers\RabbitCleaner.cs:line 113
+STD_ERR: --- End of stack trace from previous location where exception was thrown ---
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.Internal.Helpers.RabbitCleaner.<GetQueues>d__6.MoveNext() in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\Internal\Helpers\RabbitCleaner.cs:line 98
+STD_ERR: --- End of stack trace from previous location where exception was thrown ---
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.Internal.Helpers.RabbitCleaner.<ActionQueues>d__2.MoveNext() in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\Internal\Helpers\RabbitCleaner.cs:line 38
+STD_ERR: --- End of stack trace from previous location where exception was thrown ---
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+STD_ERR:    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.Internal.Helpers.RabbitCleaner.<DeleteQueues>d__0.MoveNext() in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\Internal\Helpers\RabbitCleaner.cs:line 19
+STD_ERR:    --- End of inner exception stack trace ---
+STD_ERR:    at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+STD_ERR:    at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.ConnectionHelper.Dispose() in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\ConnectionHelper.cs:line 224
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.PasngrDeployedSystemTestBase.Dispose(Boolean disposing) in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\PasngrDeployedSystemTestBase.cs:line 77
+STD_ERR:    at FifteenBelow.Test.DeployedSystemTestHelpers.PasngrDeployedSystemTestBase.Finalize() in E:\baW\comSrc\Binaries\Libraries\15below.Test.DeployedSystemTestHelpers\PasngrDeployedSystemTestBase.cs:line 71
+STD_ERR: 
