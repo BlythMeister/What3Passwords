@@ -58,7 +58,7 @@ namespace What3Passwords
                 table.AddEmptyRow();
             }
 
-            AnsiConsole.Render(table);
+            AnsiConsole.Write(table);
 
             return 0;
         }
