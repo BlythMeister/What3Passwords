@@ -31,6 +31,8 @@ OPTIONS:
         --upper-case
         --double-up
         --include-numbers
+        --include-numbers-start
+        --include-numbers-end
         --check-quality
         --check-pwnd
 ```

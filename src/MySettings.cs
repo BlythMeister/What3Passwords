@@ -28,6 +28,12 @@ namespace What3Passwords
         [CommandOption("--include-numbers")]
         public bool IncludeNumbers { get; set; }
 
+        [CommandOption("--include-numbers-start")]
+        public bool IncludeNumbersStart { get; set; }
+
+        [CommandOption("--include-numbers-end")]
+        public bool IncludeNumbersEnd { get; set; }
+
         [CommandOption("--check-quality")]
         public bool CheckQuality { get; set; }
 

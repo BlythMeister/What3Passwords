@@ -2,6 +2,7 @@
 using Spectre.Console;
 using Spectre.Console.Cli;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using what3words.dotnet.wrapper;
@@ -17,11 +18,11 @@ namespace What3Passwords
         public override async Task<int> ExecuteAsync(CommandContext context, MySettings settings)
         {
             var table = new Table().Border(TableBorder.Ascii);
-            table.AddColumn("Password").AddColumn("Is Pwnd").AddColumn("Crack Time").AddColumn("Warnings");
+            table.AddColumn("Password").AddColumn("Is Pwnd").AddColumn("Crack Time").AddColumn("Estimated Guesses (Log10)").AddColumn("Warnings");
             table.Caption("Crack Time is a rate of 10B / second - offline attack, fast hash, many cores");
             table.Title("What3Password Generator");
 
-            for (int i = 0; i < settings.NumberOfPasswords; i++)
+            for (var i = 0; i < settings.NumberOfPasswords; i++)
             {
                 var result = await GetRandomLocation(settings);
                 var words = result.Words.Split('.');
@@ -36,6 +37,7 @@ namespace What3Passwords
                 var passwordPwned = "N/A";
                 var passwordWarning = "N/A";
                 var crackTime = "N/A";
+                var estimatedGuesses = "N/A";
 
                 if (settings.CheckPwnd)
                 {
@@ -47,6 +49,7 @@ namespace What3Passwords
                     var passwordEvaluation = GetPasswordEvaluation(password);
 
                     crackTime = passwordEvaluation.CrackTimeDisplay.OfflineFastHashing1e10PerSecond;
+                    estimatedGuesses = passwordEvaluation.GuessesLog10.ToString(CultureInfo.CurrentCulture);
 
                     if (!string.IsNullOrWhiteSpace(passwordEvaluation.Feedback.Warning))
                     {
@@ -54,7 +57,7 @@ namespace What3Passwords
                     }
                 }
 
-                table.AddRow(new Markup(password), new Markup(passwordPwned), new Markup(crackTime), new Markup(passwordWarning));
+                table.AddRow(new Markup(password), new Markup(passwordPwned), new Markup(crackTime), new Markup(estimatedGuesses), new Markup(passwordWarning));
                 table.AddEmptyRow();
             }
 
@@ -65,13 +68,23 @@ namespace What3Passwords
 
         private async Task<Address> GetRandomLocation(MySettings settings)
         {
-            var lat = random.NextDouble() + random.Next(-90, 90);
-            var lng = random.NextDouble() + random.Next(-180, 180);
+            var lat = GetCoordinate(-90, 90);
+            var lng = GetCoordinate(-180, 180);
             var location = new Coordinates(lat, lng);
 
             var result = await new What3WordsV3(settings.ApiKey).ConvertTo3WA(location).RequestAsync();
 
             return result.Data;
+        }
+
+        private double GetCoordinate(int min, int max)
+        {
+            var coOrd = (double)random.Next(min, max);
+            if (coOrd > min && coOrd < max)
+            {
+                coOrd += random.NextDouble();
+            }
+            return coOrd;
         }
 
         private string GetPassword(MySettings settings, string[] words)
@@ -97,10 +110,14 @@ namespace What3Passwords
 
             var preNumber = string.Empty;
             var postNumber = string.Empty;
-            if (settings.IncludeNumbers)
+            if (settings.IncludeNumbers || settings.IncludeNumbersStart)
             {
-                preNumber = $"{random.Next(100, 999)}{settings.Separator}";
-                postNumber = $"{settings.Separator}{random.Next(100, 999)}";
+                preNumber = $"{random.Next(0, 999):D3}{settings.Separator}";
+            }
+
+            if (settings.IncludeNumbers || settings.IncludeNumbersEnd)
+            {
+                postNumber = $"{settings.Separator}{random.Next(0, 999):D3}";
             }
 
             return $"{preText}{preNumber}{wordText}{postNumber}{postText}";
